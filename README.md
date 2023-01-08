@@ -1,2 +1,2 @@
 # neovim-config
-my neovim configs
+my neovim configs including telescope, mason, autocomplete, etc..
