@@ -16,7 +16,7 @@ require('packer').startup(function(use)
   use 'morhetz/gruvbox'
   use 'nvim-tree/nvim-tree.lua'
   use 'nvim-tree/nvim-web-devicons'
-
+  use "folke/which-key.nvim"
 
   use { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
