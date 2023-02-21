@@ -14,6 +14,7 @@ require('packer').startup(function(use)
   -- Package manager
   use 'wbthomason/packer.nvim'
   use 'morhetz/gruvbox'
+  use 'ray-x/starry.nvim'
   use 'nvim-tree/nvim-tree.lua'
   use 'nvim-tree/nvim-web-devicons'
   use "folke/which-key.nvim"

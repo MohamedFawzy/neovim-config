@@ -1,4 +1,5 @@
-require("core.plugin_config.gruvbox")
+--require("core.plugin_config.gruvbox")
+require('core.plugin_config.starry')
 require("core.plugin_config.comment")
 require("core.plugin_config.fidget")
 require("core.plugin_config.gitsigns")
