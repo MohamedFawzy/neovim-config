@@ -492,7 +492,7 @@ cmp.setup {
     { name = 'luasnip' },
   },
 }
-vim.keymap.set("n", "<leader>t", ':Neotree toggle<CR>')
+vim.keymap.set("n", "<leader>f", ':Neotree toggle<CR>')
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
