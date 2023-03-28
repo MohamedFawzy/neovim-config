@@ -5,7 +5,7 @@ return {
     require('lualine').setup {
       options = {
         icons_enabled = false,
-        theme = 'github_dark_default',
+        theme = 'rose-pine',
         component_separators = '|',
         section_separators = '',
         disabled_filetypes = {
