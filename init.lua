@@ -116,10 +116,10 @@ require('lazy').setup({
 
   {
     -- Theme inspired by Atom
-    'navarasu/onedark.nvim',
+    "projekt0n/github-nvim-theme",
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme 'onedark'
+      vim.cmd.colorscheme 'github_dark_default'
     end,
   },
   {
@@ -485,6 +485,8 @@ cmp.setup {
   },
 }
 vim.keymap.set("n", "<leader>f", ':Neotree toggle<CR>')
+vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
