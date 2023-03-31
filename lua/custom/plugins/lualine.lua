@@ -1,11 +1,11 @@
 return {
-  'lnvim-lualine/lualine.nvim',
+  'nvim-lualine/lualine.nvim',
   version = "*",
   config = function()
     require('lualine').setup {
       options = {
         icons_enabled = false,
-        theme = 'github_dark_default',
+        theme = 'tokyonight',
         component_separators = '|',
         section_separators = '',
         disabled_filetypes = {
