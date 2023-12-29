@@ -219,6 +219,10 @@ vim.o.completeopt = 'menuone,noselect'
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
 
+vim.o.noexpandtab = true
+vim.o.tabstop = 4
+vim.o.shiftwidth = 4
+
 -- [[ Basic Keymaps ]]
 
 -- Keymaps for better default experience
