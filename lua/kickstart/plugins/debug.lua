@@ -52,7 +52,7 @@ return {
         python = function(config)
           config.adapters = {
             type = "executable",
-            command = "/usr/bin/python3.10",
+            command = "/usr/bin/python3.11",
             args = {
               "-m",
               "debugpy.adapter",
