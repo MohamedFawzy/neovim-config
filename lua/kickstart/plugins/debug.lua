@@ -41,7 +41,7 @@ return {
     -- You can provide additional configuration to the handlers,
     -- see mason-nvim-dap README for more information
     require('mason-nvim-dap').setup({
-      ensure_installed = { 'stylua', 'jq', 'python' },
+      ensure_installed = { 'stylua', 'jq', 'python', 'go', 'lua' },
       handlers = {
         function(config)
           -- all sources with no handler get passed here
