@@ -405,6 +405,8 @@ local servers = {
     },
     staticcheck = true,
     gofumpt = true,
+    completeUnimported = true,
+    usePlaceholders = true
   },
   pyright = {},
   -- rust_analyzer = {},
