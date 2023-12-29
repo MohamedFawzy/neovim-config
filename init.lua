@@ -395,14 +395,14 @@ end
 --  the `settings` field of the server config. You must look up that documentation yourself.
 local servers = {
   -- clangd = {},
-  -- gopls = {
-  --   analyses = {
-  --     unusedparams = true,
-  --   },
-  --   staticcheck = true,
-  --   gofumpt = true,
-  -- },
-  -- pyright = {},
+  gopls = {
+    analyses = {
+      unusedparams = true,
+    },
+    staticcheck = true,
+    gofumpt = true,
+  },
+  pyright = {},
   -- rust_analyzer = {},
   -- tsserver = {},
 
