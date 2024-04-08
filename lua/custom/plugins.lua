@@ -1,8 +1,16 @@
 local plugins = {
   {
+    "mfussenegger/nvim-lint",
+    event = "VeryLazy",
+    config = function()
+      require "custom.configs.lint"
+    end
+  },
+  {
     "williamboman/mason.nvim",
     opts = {
       ensure_installed = {
+        "eslint-lsp",
         "typescript-language-server"
       }
     }
