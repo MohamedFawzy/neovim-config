@@ -48,6 +48,7 @@ local plugins = {
         "js-debug-adapter",
         "prettier",
         "typescript-language-server",
+        "pyright",
         "lua-language-server"
       }
     }
