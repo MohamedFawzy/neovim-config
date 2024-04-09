@@ -1,5 +1,12 @@
 local plugins = {
   {
+    "mhartington/formatter.nvim",
+    event = "VeryLazy",
+    opts = function ()
+     return require "custom.configs.formatter"
+    end
+  },
+  {
     "mfussenegger/nvim-lint",
     event = "VeryLazy",
     config = function()
@@ -11,6 +18,7 @@ local plugins = {
     opts = {
       ensure_installed = {
         "eslint-lsp",
+        "prettier",
         "typescript-language-server"
       }
     }
