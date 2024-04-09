@@ -1,7 +1,12 @@
-const fs = require("fs")
-fs.writev()
+const fs = require("fs");
 
-const fs1 = require("http")
-fs1.createServer(
+function fib(n) {
+  if (n < 2) {
+    return n;
+  }
 
-)
+  return fib(n - 1) + fib(n - 2);
+}
+
+const x = fib(5);
+const y = fib(8);
