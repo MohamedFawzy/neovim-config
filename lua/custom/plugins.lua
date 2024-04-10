@@ -45,6 +45,7 @@ local plugins = {
         "pyright",
         "black",
         "mypy",
+        "ruff",
         "lua-language-server"
       }
     }
