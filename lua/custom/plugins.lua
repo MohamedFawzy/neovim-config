@@ -2,7 +2,7 @@ local plugins = {
   {
     "rcarriga/nvim-dap-ui",
     event = "VeryLazy",
-    dependencies = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"},
+    dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
     config = function()
       local dap = require("dap")
       local dapui = require("dapui")
@@ -20,25 +20,19 @@ local plugins = {
   },
   {
     "mfussenegger/nvim-dap",
-    config = function ()
-     require "custom.configs.dap"
-     require("core.utils").load_mappings("dap")
-
-    end
-  },
-  {
-    "mhartington/formatter.nvim",
-    event = "VeryLazy",
-    opts = function ()
-     return require "custom.configs.formatter"
-    end
-  },
-  {
-    "mfussenegger/nvim-lint",
-    event = "VeryLazy",
     config = function()
-      require "custom.configs.lint"
+      require "custom.configs.dap"
+      require("core.utils").load_mappings("dap")
     end
+  },
+  {
+    "nvimtools/none-ls.nvim",
+    dependencies = { "nvimtools/none-ls-extras.nvim", },
+    ft = { "python", "javascript", "typescript" },
+    event = "VeryLazy",
+    opts = function()
+      return require "custom.configs.null-ls"
+    end,
   },
   {
     "williamboman/mason.nvim",
@@ -49,15 +43,17 @@ local plugins = {
         "prettier",
         "typescript-language-server",
         "pyright",
+        "black",
+        "mypy",
         "lua-language-server"
       }
     }
   },
   {
     "neovim/nvim-lspconfig",
-    config = function ()
-     require "plugins.configs.lspconfig"
-     require "custom.configs.lspconfig"
+    config = function()
+      require "plugins.configs.lspconfig"
+      require "custom.configs.lspconfig"
     end,
   },
 }
