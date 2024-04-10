@@ -1,12 +1,14 @@
 local plugins = {
   {
+    "nvim-neotest/nvim-nio",
+  },
+  {
     "rcarriga/nvim-dap-ui",
-    event = "VeryLazy",
-    dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
+    dependencies = "mfussenegger/nvim-dap",
     config = function()
       local dap = require("dap")
       local dapui = require("dapui")
-      require("dapui").setup()
+      dapui.setup()
       dap.listeners.after.event_initialized["dapui_config"] = function()
         dapui.open()
       end
@@ -20,10 +22,24 @@ local plugins = {
   },
   {
     "mfussenegger/nvim-dap",
-    config = function()
+    config = function(_, opts)
       require "custom.configs.dap"
       require("core.utils").load_mappings("dap")
     end
+  },
+  {
+    "mfussenegger/nvim-dap-python",
+    ft = "python",
+    dependencies = {
+      "mfussenegger/nvim-dap",
+      "rcarriga/nvim-dap-ui",
+      "nvim-neotest/nvim-nio",
+    },
+    config = function(_, opts)
+      local path = "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
+      require("dap-python").setup(path)
+      require("core.utils").load_mappings("dap_python")
+    end,
   },
   {
     "nvimtools/none-ls.nvim",
@@ -46,6 +62,7 @@ local plugins = {
         "black",
         "mypy",
         "ruff",
+        "debugpy",
         "lua-language-server"
       }
     }
