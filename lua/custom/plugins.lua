@@ -42,6 +42,20 @@ local plugins = {
     end,
   },
   {
+    "leoluz/nvim-dap-go",
+    dependencies = {
+      "mfussenegger/nvim-dap",
+      "rcarriga/nvim-dap-ui",
+      "nvim-neotest/nvim-nio",
+
+    },
+    ft = "go",
+    config = function(_, opts)
+      require("dap-go").setup(opts)
+    end
+
+  },
+  {
     "nvimtools/none-ls.nvim",
     dependencies = { "nvimtools/none-ls-extras.nvim", },
     ft = { "python", "javascript", "typescript", "go" },
