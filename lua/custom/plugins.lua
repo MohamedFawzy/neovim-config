@@ -44,7 +44,7 @@ local plugins = {
   {
     "nvimtools/none-ls.nvim",
     dependencies = { "nvimtools/none-ls-extras.nvim", },
-    ft = { "python", "javascript", "typescript" },
+    ft = { "python", "javascript", "typescript", "go" },
     event = "VeryLazy",
     opts = function()
       return require "custom.configs.null-ls"
