@@ -63,7 +63,8 @@ local plugins = {
         "mypy",
         "ruff",
         "debugpy",
-        "lua-language-server"
+        "lua-language-server",
+        "gopls"
       }
     }
   },
