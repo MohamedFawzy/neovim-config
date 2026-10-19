@@ -1,7 +1,5 @@
 my neovim-config
 
-based on nvchad
-
 supports languages:
 
 1- nodejs
