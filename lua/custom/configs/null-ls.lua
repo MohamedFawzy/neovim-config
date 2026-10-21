@@ -1,21 +1,22 @@
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 local null_ls = require('null-ls')
 
+-- Explicitly add Mason bin to PATH using absolute path for reliability
+local mason_bin = vim.fn.stdpath("data") .. "/mason/bin"
+vim.env.PATH = mason_bin .. ":" .. vim.env.PATH
+
 local opts = {
   sources = {
     null_ls.builtins.formatting.gofumpt,
     null_ls.builtins.formatting.goimports_reviser,
     null_ls.builtins.formatting.black,
     null_ls.builtins.diagnostics.mypy.with({
-      extra_args = function()
-        local virtual = os.getenv("VIRTUAL_ENV") or os.getenv("CONDA_PREFIX") or "/usr"
-        return { "--python-executable", virtual .. "/bin/python3" }
-      end,
+      command = "mypy",
     }),
     null_ls.builtins.formatting.stylua,
     null_ls.builtins.formatting.prettier,
     --    null_ls.builtins.diagnostics.eslint,
-    require("none-ls.diagnostics.eslint"),
+    null_ls.builtins.diagnostics.eslint,
 
 
   },
