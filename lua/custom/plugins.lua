@@ -6,8 +6,8 @@ local plugins = {
     "rcarriga/nvim-dap-ui",
     dependencies = "mfussenegger/nvim-dap",
     config = function()
-      local dap = require("dap")
-      local dapui = require("dapui")
+      local dap = require "dap"
+      local dapui = require "dapui"
       dapui.setup()
       dap.listeners.after.event_initialized["dapui_config"] = function()
         dapui.open()
@@ -18,14 +18,14 @@ local plugins = {
       dap.listeners.before.event_exited["dapui_config"] = function()
         dapui.close()
       end
-    end
+    end,
   },
   {
     "mfussenegger/nvim-dap",
-    config = function(_, opts)
+    config = function()
       require "custom.configs.dap"
-      require("core.utils").load_mappings("dap")
-    end
+      require("core.utils").load_mappings "dap"
+    end,
   },
   {
     "mfussenegger/nvim-dap-python",
@@ -35,10 +35,10 @@ local plugins = {
       "rcarriga/nvim-dap-ui",
       "nvim-neotest/nvim-nio",
     },
-    config = function(_, opts)
-      local path = "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
+    config = function()
+      local path = vim.fn.stdpath "data" .. "/mason/packages/debugpy/venv/bin/python"
       require("dap-python").setup(path)
-      require("core.utils").load_mappings("dap_python")
+      require("core.utils").load_mappings "dap_python"
     end,
   },
   {
@@ -47,40 +47,21 @@ local plugins = {
       "mfussenegger/nvim-dap",
       "rcarriga/nvim-dap-ui",
       "nvim-neotest/nvim-nio",
-
     },
     ft = "go",
     config = function(_, opts)
       require("dap-go").setup(opts)
-    end
-
+      require("core.utils").load_mappings "dap_go"
+    end,
   },
   {
     "nvimtools/none-ls.nvim",
-    dependencies = { "nvimtools/none-ls-extras.nvim", },
+    dependencies = { "nvimtools/none-ls-extras.nvim" },
     ft = { "python", "javascript", "typescript", "go" },
     event = "VeryLazy",
     opts = function()
       return require "custom.configs.null-ls"
     end,
-  },
-  {
-    "williamboman/mason.nvim",
-    opts = {
-      ensure_installed = {
-        "eslint-lsp",
-        "js-debug-adapter",
-        "prettier",
-        "typescript-language-server",
-        "pyright",
-        "black",
-        "mypy",
-        "ruff",
-        "debugpy",
-        "lua-language-server",
-        "gopls"
-      }
-    }
   },
   {
     "neovim/nvim-lspconfig",
@@ -94,12 +75,41 @@ local plugins = {
     ft = "go",
     config = function(_, opts)
       require("gopher").setup(opts)
-      require("core.utils").load_mappings("gopher")
+      require("core.utils").load_mappings "gopher"
     end,
     build = function()
       vim.cmd [[silent! GoInstallDeps]]
     end,
-  }
+  },
+
+  ------------------------------------------------- markdown -----------------
+  {
+    "MeanderingProgrammer/render-markdown.nvim",
+    ft = { "markdown", "markdown.mdx" },
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons",
+    },
+    config = function(_, opts)
+      require("render-markdown").setup(opts)
+      require("core.utils").load_mappings "markdown"
+    end,
+    opts = {},
+  },
+  {
+    "iamcco/markdown-preview.nvim",
+    cmd = { "MarkdownPreview", "MarkdownPreviewStop", "MarkdownPreviewToggle" },
+    ft = "markdown",
+    build = function()
+      -- The build task runs before Lazy adds the plugin to the runtimepath,
+      -- so autoload/mkdp is not available unless we add it manually.
+      vim.opt.rtp:append(vim.fn.stdpath "data" .. "/lazy/markdown-preview.nvim")
+      vim.fn["mkdp#util#install_sync"](1)
+    end,
+    init = function()
+      vim.g.mkdp_filetypes = { "markdown" }
+    end,
+  },
 }
 
 return plugins

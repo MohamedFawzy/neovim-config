@@ -1,39 +1,42 @@
-local config = require("plugins.configs.lspconfig")
+local config = require "plugins.configs.lspconfig"
 local on_attach = config.on_attach
 local capabilities = config.capabilities
 
--- local lspconfig = require("lspconfig")
-local util = require "lspconfig.util"
+-- vim.lsp.enable() only accepts (name, enable). Server options have to be
+-- registered with vim.lsp.config() first, otherwise they are silently ignored.
+local function setup(server, opts)
+  vim.lsp.config(
+    server,
+    vim.tbl_deep_extend("force", {
+      on_attach = on_attach,
+      capabilities = capabilities,
+    }, opts or {})
+  )
 
-vim.lsp.enable("tsserver", {
-  on_attach = on_attach,
-  capabilities = capabilities,
+  vim.lsp.enable(server)
+end
+
+-- tsserver was renamed to ts_ls in nvim-lspconfig v2.
+setup("ts_ls", {
   init_options = {
     preferences = {
       disableSuggestions = true,
-    }
-  }
+    },
+  },
 })
 
-
-vim.lsp.enable("pyright", {
-  on_attach = on_attach,
-  capabilities = capabilities,
+setup("pyright", {
   filetypes = { "python" },
 })
 
-
-vim.lsp.enable("gopls", {
-  on_attach = on_attach,
-  capabilities = capabilities,
-  cmd = { "gopls" },
+setup("gopls", {
   filetypes = { "go", "gomod", "gowork", "gotmpl" },
-  root_dir = util.root_pattern("go.work", "go.mod", ".git"),
   settings = {
-    completedUnimported = true,
-    usePlaceholders = true,
-    analysis = {
-      unusedparams = true,
-    }
-  }
+    gopls = {
+      usePlaceholders = true,
+      analyses = {
+        unusedparams = true,
+      },
+    },
+  },
 })

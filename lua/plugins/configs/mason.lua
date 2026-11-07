@@ -1,5 +1,21 @@
 local options = {
-  ensure_installed = { "lua-language-server" }, -- not an option from mason.nvim
+  ensure_installed = {
+    "lua-language-server",
+    "eslint-lsp",
+    "eslint",
+    "js-debug-adapter",
+    "prettier",
+    "typescript-language-server",
+    "pyright",
+    "black",
+    "mypy",
+    "ruff",
+    "debugpy",
+    "gopls",
+    "gofumpt",
+    "goimports-reviser",
+    "stylua",
+  },
 
   PATH = "skip",
 

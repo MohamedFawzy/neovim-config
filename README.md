@@ -1,11 +1,22 @@
-my neovim-config
+# my neovim-config
 
-supports languages:
+NvChad-based Neovim configuration.
 
-1- nodejs
+## Supported languages
 
-2- golang
+- Node.js (JavaScript / TypeScript)
+- Go
+- Python
 
-3- python
+## Markdown support
 
-4- golang
+- `render-markdown.nvim` renders headings, lists, tables, checkboxes, etc.
+  directly inside the buffer.
+- `markdown-preview.nvim` provides a browser preview.
+
+### Keymaps (markdown buffers)
+
+| Keymap       | Action                                 |
+| ------------ | -------------------------------------- |
+| `<leader>mr` | Toggle in-buffer markdown rendering    |
+| `<leader>mp` | Toggle markdown preview in the browser |

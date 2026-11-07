@@ -57,7 +57,7 @@ for _, provider in ipairs { "node", "perl", "python3", "ruby" } do
 end
 
 -- add binaries installed by mason.nvim to path
-local is_windows = vim.fn.has("win32") ~= 0
+local is_windows = vim.fn.has "win32" ~= 0
 vim.env.PATH = vim.fn.stdpath "data" .. "/mason/bin" .. (is_windows and ";" or ":") .. vim.env.PATH
 
 -------------------------------------- autocmds ------------------------------------------
@@ -74,7 +74,7 @@ autocmd("FileType", {
 -- reload some chadrc options on-save
 autocmd("BufWritePost", {
   pattern = vim.tbl_map(function(path)
-    return vim.fs.normalize(vim.loop.fs_realpath(path))
+    return vim.fs.normalize(vim.uv.fs_realpath(path))
   end, vim.fn.glob(vim.fn.stdpath "config" .. "/lua/custom/**/*.lua", true, true, true)),
   group = vim.api.nvim_create_augroup("ReloadNvChad", {}),
 
@@ -112,7 +112,7 @@ vim.api.nvim_create_autocmd({ "UIEnter", "BufReadPost", "BufNewFile" }, {
   group = vim.api.nvim_create_augroup("NvFilePost", { clear = true }),
   callback = function(args)
     local file = vim.api.nvim_buf_get_name(args.buf)
-    local buftype = vim.api.nvim_buf_get_option(args.buf, "buftype")
+    local buftype = vim.bo[args.buf].buftype
 
     if not vim.g.ui_entered and args.event == "UIEnter" then
       vim.g.ui_entered = true

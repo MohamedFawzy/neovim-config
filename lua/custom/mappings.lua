@@ -5,12 +5,12 @@ M.dap = {
   n = {
     ["<leader>db"] = {
       "<cmd> DapToggleBreakpoint <CR>",
-      "Add breakpoint at line"
+      "Add breakpoint at line",
     },
     ["<leader>dr"] = {
       "<cmd> DapContinue <CR>",
-      "Run or continue the debugger"
-    }
+      "Run or continue the debugger",
+    },
   },
 }
 
@@ -20,9 +20,10 @@ M.dap_python = {
     ["<leader>dpr"] = {
       function()
         require("dap-python").test_method()
-      end
-    }
-  }
+      end,
+      "Debug python test method",
+    },
+  },
 }
 
 M.dap_go = {
@@ -32,26 +33,39 @@ M.dap_go = {
       function()
         require("dap-go").debug_test()
       end,
-      "Debug go test"
+      "Debug go test",
     },
     ["<leader>gdl"] = {
       function()
         require("dap-go").debug_last()
       end,
-      "Debug last go test"
-    }
-  }
+      "Debug last go test",
+    },
+  },
 }
-
 
 M.gopher = {
   plugin = true,
   n = {
     ["<leader>gsj"] = {
       "<cmd> GoTagAdd json <CR>",
-      "Add json struct tags"
-    }
-  }
+      "Add json struct tags",
+    },
+  },
+}
+
+M.markdown = {
+  plugin = true,
+  n = {
+    ["<leader>mp"] = {
+      "<cmd> MarkdownPreviewToggle <CR>",
+      "Toggle markdown preview in browser",
+    },
+    ["<leader>mr"] = {
+      "<cmd> RenderMarkdown toggle <CR>",
+      "Toggle in-buffer markdown rendering",
+    },
+  },
 }
 
 return M
