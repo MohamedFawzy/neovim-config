@@ -42,3 +42,24 @@ if vim.fn.has "nvim-0.12" == 1 and not vim.g.nvim_treesitter_012_compat then
     return add_directive(name, handler, opts)
   end
 end
+
+-- Neovim 0.12 regression: on the first file opened after startup, the built-in
+-- filetype detection runs but fails to apply the detected filetype (`:setf`
+-- inside its BufRead callback is a no-op). That leaves `filetype` empty, so
+-- treesitter, LSP, and render-markdown never activate for that buffer.
+if vim.fn.has "nvim-0.12" == 1 then
+  vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+    group = vim.api.nvim_create_augroup("CustomFiletypeFallback", { clear = true }),
+    callback = function(args)
+      if vim.bo[args.buf].filetype ~= "" then
+        return
+      end
+
+      local ft = vim.filetype.match { filename = args.file, buf = args.buf }
+      if ft then
+        -- Assigning the option directly also emits FileType.
+        vim.bo[args.buf].filetype = ft
+      end
+    end,
+  })
+end

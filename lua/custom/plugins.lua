@@ -93,6 +93,17 @@ local plugins = {
     config = function(_, opts)
       require("render-markdown").setup(opts)
       require("core.utils").load_mappings "markdown"
+
+      -- When a markdown buffer is already open (e.g. `:e README.md` after
+      -- starting Neovim), lazy.nvim loads this plugin during the FileType
+      -- event, after the buffer has been created. render-markdown skips that
+      -- buffer in its plugin init, so attach to it explicitly.
+      vim.schedule(function()
+        local buf = vim.api.nvim_get_current_buf()
+        if vim.bo[buf].filetype == "markdown" then
+          require("render-markdown.core.manager").attach(buf)
+        end
+      end)
     end,
     opts = {},
   },

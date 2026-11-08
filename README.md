@@ -7,6 +7,7 @@ NvChad-based Neovim configuration.
 - Node.js (JavaScript / TypeScript)
 - Go
 - Python
+- Lua (this Neovim config)
 
 ## Markdown support
 
